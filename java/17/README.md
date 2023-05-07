@@ -16,4 +16,4 @@ mvn --version
 gradle -v
 ```
 
-*Note:*  the JDK (version 11) will be available at **$HOME/jdks/jdk/11** even after unloading the project directory and thus can be used by intelliJ.
+*Note:*  the JDK (version 17) will be available at **$HOME/jdks/jdk/17** even after unloading the project directory and thus can be used by intelliJ.

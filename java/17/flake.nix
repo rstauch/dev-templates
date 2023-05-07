@@ -1,5 +1,5 @@
 {
-  description = "A flake for GraalVM, JDK, Maven and Gradle";
+  description = "A flake for GraalVM, JDK, Maven and Gradle (Java 17)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
