@@ -12,7 +12,7 @@
     flake-utils,
     ...
   }: let
-    quarkus_version = "2.2.5";
+    quarkus_version = "2.16.7";
     quarkus_sanitized = builtins.replaceStrings ["."] ["_"] quarkus_version;
   in
     flake-utils.lib.eachDefaultSystem (system: let
