@@ -29,9 +29,9 @@
         buildInputs = [graalvm jdk gradle mvn];
 
         shellHook = ''
-          export JAVA_HOME="${jdk}/lib/openjdk"
+          export JAVA_HOME="${jdk}"
           export GRAALVM_HOME="${graalvm}"
-          mkdir -p $HOME/jdks/jdk/${javaVersion} && ln -sfn "${jdk}/lib/openjdk" "$HOME/jdks/jdk/${javaVersion}"
+          mkdir -p $HOME/jdks/jdk/${javaVersion} && ln -sfn "${jdk}" "$HOME/jdks/jdk/${javaVersion}"
         '';
       };
     });
