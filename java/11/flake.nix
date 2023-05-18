@@ -10,28 +10,34 @@
     self,
     nixpkgs,
     flake-utils,
-    ...
-  }: let
-    java_version = "11";
-  in
+  }:
     flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-      jdk = pkgs."jdk${java_version}";
-      gradle = pkgs.gradle.override {java = jdk;};
-      graalvm = pkgs."graalvm${java_version}-ce";
-      mvn = pkgs.maven;
-      javaVersion = java_version;
+      javaVersion = 11;
+
+      overlays = [
+        (self: super: rec {
+          jdk = super."jdk${toString javaVersion}";
+          gradle = super.gradle.override {
+            java = jdk;
+          };
+          maven = super.maven.override {
+            inherit jdk;
+          };
+          graalvm = pkgs."graalvm${toString javaVersion}-ce";
+        })
+      ];
+
+      pkgs = import nixpkgs {inherit overlays system;};
     in {
       devShells.default = pkgs.mkShell {
-        inherit javaVersion;
-        buildInputs = [graalvm jdk gradle mvn];
+        packages = with pkgs; [gradle jdk maven];
 
         shellHook = ''
-          export JAVA_HOME="${jdk}"
-          export GRAALVM_HOME="${graalvm}"
-          mkdir -p $HOME/jdks/jdk/${javaVersion} && ln -sfn "${jdk}" "$HOME/jdks/jdk/${javaVersion}"
+          ${pkgs.jdk}/bin/java -version
+
+          export JAVA_HOME="${pkgs.jdk}"
+          export GRAALVM_HOME="${pkgs.graalvm}"
+          mkdir -p $HOME/jdks/jdk/${toString javaVersion} && ln -sfn "${pkgs.jdk}" "$HOME/jdks/jdk/${toString javaVersion}"
         '';
       };
     });
