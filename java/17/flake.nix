@@ -33,7 +33,7 @@
         packages = with pkgs; [gradle jdk maven];
 
         shellHook = ''
-          ${pkgs.jdk}/bin/java -version
+          # ${pkgs.lib.getExe pkgs.maven} --version
 
           export JAVA_HOME="${pkgs.jdk}"
           export GRAALVM_HOME="${pkgs.graalvm}"
