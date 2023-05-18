@@ -1,5 +1,5 @@
 {
-  description = "A flake for GraalVM, JDK, Maven and Gradle (Java 11)";
+  description = "A flake for GraalVM, JDK, Maven and Gradle";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -12,6 +12,7 @@
     flake-utils,
     ...
   }: let
+    # default to jdk11
     java_version = "11";
   in
     flake-utils.lib.eachDefaultSystem (system: let
