@@ -23,14 +23,14 @@
           maven = super.maven.override {
             inherit jdk;
           };
-          graalvm = pkgs."graalvm${toString javaVersion}-ce";
+          graalvm = super.pkgs."graalvm${toString javaVersion}-ce";
         })
       ];
 
       pkgs = import nixpkgs {inherit overlays system;};
     in {
       devShells.default = pkgs.mkShell {
-        packages = with pkgs; [gradle jdk maven];
+        packages = with pkgs; [gradle jdk maven graalvm];
 
         shellHook = ''
           # ${pkgs.lib.getExe pkgs.maven} --version
