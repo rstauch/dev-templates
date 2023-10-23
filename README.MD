@@ -1,11 +1,15 @@
 ## Dev
+
 create `flake.nix`
 stage flake with `git add .`
 create `.envrc`
 run `direnv allow`
 
+## Update
+
+nix flake update
 
 ## Fix Potential Issues
 
-run the following command(s):  
+run the following command(s):
 `nix-collect-garbage`

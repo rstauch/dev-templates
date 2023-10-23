@@ -1,5 +1,5 @@
 {
-  description = "A flake for JDK, Maven and Gradle (Java 17)";
+  description = "A flake for JDK, Maven and Gradle (Java 21)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -14,7 +14,7 @@
     }:
     flake-utils.lib.eachDefaultSystem (system:
     let
-      javaVersion = 17;
+      javaVersion = 21;
 
       overlays = [
         (self: super: rec {

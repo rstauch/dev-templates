@@ -2,7 +2,7 @@ create a **.envrc** file in your project directory
 `touch .envrc`
 
 add:
-`use flake "github:rstauch/dev-templates?dir=java/11"`
+`use flake "github:rstauch/dev-templates?dir=java/21"`
 
 run:
 `direnv allow`
